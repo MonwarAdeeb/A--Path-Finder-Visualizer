@@ -23,3 +23,7 @@ try:
     file.close()
 except FileNotFoundError:
     print("[ERROR] No requirement.txt file found")
+
+if len(required) > 0:
+    print("[INPUT] You are about to install", len(required), "packages, would you like to proceed (y/n):", end=" ")
+    ans = input()
