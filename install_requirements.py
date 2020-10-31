@@ -14,3 +14,12 @@ def install(package):
 
 required = []
 failed = []
+
+# Try to open requirements.txt file and read all required packages
+try:
+    file = open("requirements.txt", "r")
+    file_lines = file.readlines()
+    required = [line.strip().lower() for line in file_lines]
+    file.close()
+except FileNotFoundError:
+    print("[ERROR] No requirement.txt file found")
