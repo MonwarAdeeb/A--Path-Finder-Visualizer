@@ -37,3 +37,13 @@ if len(required) > 0:
                     print("[LOG]", package, "is already installed, skipping..")
             except ImportError:
                 print("[LOG]", package, "not installed")
+
+                try:
+                    print("[LOG] Trying o install", package, "via pip")
+                    try:
+                        import pip
+                    except:
+                        print("[EXCEPTION] Pip is not installed")
+                        print("[LOG] Trying to install pip")
+                        get_pip.main()
+                        print("[LOG] Pip has been installed")
