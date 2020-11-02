@@ -47,3 +47,11 @@ if len(required) > 0:
                         print("[LOG] Trying to install pip")
                         get_pip.main()
                         print("[LOG] Pip has been installed")
+
+                    print("[LOG] Installing", package)
+                    install(package)
+                    with contextlib.redirect_stdout(None):
+                        __import__(package)
+                        print("[LOG]", package, "has been installed")
+                except Exception as e:
+                    print("[ERROR] Could not install", package, "-", e)
