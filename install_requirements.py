@@ -55,3 +55,9 @@ if len(required) > 0:
                         print("[LOG]", package, "has been installed")
                 except Exception as e:
                     print("[ERROR] Could not install", package, "-", e)
+                    failed.append(package)
+
+    else:
+        print("[STOP] Operation terminated by user")
+else:
+    print("[LOG] No Package to install")
