@@ -30,3 +30,8 @@ class spot:
         self.obs = False
         self.closed = False
         self.value = 1
+
+    def show(self, color, st):
+        if self.closed == False:
+            pygame.draw.rect(screen, color, (self.i * w, self.j * h, w, h), st)
+            pygame.display.update()
