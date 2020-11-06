@@ -35,3 +35,7 @@ class spot:
         if self.closed == False:
             pygame.draw.rect(screen, color, (self.i * w, self.j * h, w, h), st)
             pygame.display.update()
+
+    def path(self, color, st):
+        pygame.draw.rect(screen, color, (self.i * w, self.j * h, w, h), st)
+        pygame.display.update()
