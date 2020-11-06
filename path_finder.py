@@ -64,3 +64,7 @@ grey = (220, 220, 220)
 w = 800 / cols
 h = 800 / row
 cameFrom = []
+
+# create 2d array
+for i in range(cols):
+    grid[i] = [0 for i in range(row)]
