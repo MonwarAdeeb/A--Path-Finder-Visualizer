@@ -51,3 +51,16 @@ class spot:
             self.neighbors.append(grid[self.i][j + 1])
         if j > 0 and grid[self.i][j - 1].obs == False:
             self.neighbors.append(grid[self.i][j - 1])
+
+cols = 50
+grid = [0 for i in range(cols)]
+row = 50
+openSet = []
+closedSet = []
+red = (255, 0, 0)
+green = (0, 255, 0)
+blue = (0, 0, 255)
+grey = (220, 220, 220)
+w = 800 / cols
+h = 800 / row
+cameFrom = []
