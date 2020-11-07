@@ -68,3 +68,8 @@ cameFrom = []
 # create 2d array
 for i in range(cols):
     grid[i] = [0 for i in range(row)]
+
+# Create Spots
+for i in range(cols):
+    for j in range(row):
+        grid[i][j] = spot(i, j)
