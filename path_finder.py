@@ -73,3 +73,12 @@ for i in range(cols):
 for i in range(cols):
     for j in range(row):
         grid[i][j] = spot(i, j)
+
+# Set start and end node
+start = grid[12][5]
+end = grid[3][6]
+
+# Show rectangle
+for i in range(cols):
+    for j in range(row):
+        grid[i][j].show((255, 255, 255), 1)
