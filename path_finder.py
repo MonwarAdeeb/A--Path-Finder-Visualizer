@@ -18,6 +18,7 @@ except:
 
 screen = pygame.display.set_mode((800, 800))
 
+
 class spot:
     def __init__(self, x, y):
         self.i = x
@@ -40,7 +41,7 @@ class spot:
         pygame.draw.rect(screen, color, (self.i * w, self.j * h, w, h), st)
         pygame.display.update()
 
-    def  addNeighbors(self, grid):
+    def addNeighbors(self, grid):
         j = self.i
         j = self.j
         if i < cols-1 and grid[self.i + 1][j].obs == False:
@@ -51,6 +52,7 @@ class spot:
             self.neighbors.append(grid[self.i][j + 1])
         if j > 0 and grid[self.i][j - 1].obs == False:
             self.neighbors.append(grid[self.i][j - 1])
+
 
 cols = 50
 grid = [0 for i in range(cols)]
@@ -92,3 +94,14 @@ for i in range(0, row):
     grid[i][0].show(grey, 0)
     grid[i][0].obs = True
     grid[i][row-1].obs = True
+
+
+def onsubmit():
+    global start
+    global end
+    st = startBox.get().split(',')
+    ed = endbox.get().split(',')
+    start = grid[int(st[0])][int(st[1])]
+    end = grid[int(ed[0])][int(ed[1])]
+    window.quit()
+    window.destroy()
