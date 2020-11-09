@@ -115,3 +115,12 @@ endbox = Entry(window)
 var = IntVar()
 showPath = ttk.Checkbutton(window, text='Show Steps :',
                            onvalue=1, offvalue=0, variable=var)
+
+submit = Button(window, text='Submit', command=onsubmit)
+
+showPath.grid(columnspan=2, row=2)
+submit.grid(columnspan=2, row=3)
+label1.grid(row=1, pady=3)
+endbox.grid(row=1, column=1, pady=3)
+startBox.grid(row=0, column=1, pady=3)
+label.grid(row=0, pady=3)
