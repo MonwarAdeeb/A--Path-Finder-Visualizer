@@ -105,3 +105,13 @@ def onsubmit():
     end = grid[int(ed[0])][int(ed[1])]
     window.quit()
     window.destroy()
+
+
+window = Tk()
+label = Label(window, text='Start(x,y): ')
+startBox = Entry(window)
+label1 = Label(window, text='End(x,y): ')
+endbox = Entry(window)
+var = IntVar()
+showPath = ttk.Checkbutton(window, text='Show Steps :',
+                           onvalue=1, offvalue=0, variable=var)
