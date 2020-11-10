@@ -142,3 +142,9 @@ def mousePress(x):
         if acess.obs == False:
             acess.obs = True
             acess.show((255, 255, 255), 0)
+
+
+end.show((255, 8, 127), 0)
+start.show((255, 8, 127), 0)
+
+loop = True
