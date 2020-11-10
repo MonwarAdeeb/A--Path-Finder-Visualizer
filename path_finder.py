@@ -124,3 +124,21 @@ label1.grid(row=1, pady=3)
 endbox.grid(row=1, column=1, pady=3)
 startBox.grid(row=0, column=1, pady=3)
 label.grid(row=0, pady=3)
+
+window.update()
+mainloop()
+
+pygame.init()
+openSet.append(start)
+
+
+def mousePress(x):
+    t = x[0]
+    w = x[1]
+    g1 = t // (800 // cols)
+    g2 = w // (800 // row)
+    acess = grid[g1][g2]
+    if acess != start and acess != end:
+        if acess.obs == False:
+            acess.obs = True
+            acess.show((255, 255, 255), 0)
