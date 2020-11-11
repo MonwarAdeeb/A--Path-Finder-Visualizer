@@ -164,3 +164,7 @@ while loop:
             if event.key == pygame.K_SPACE:
                 loop = False
                 break
+
+for i in range(cols):
+    for J in range(row):
+        grid[i][j].addNeighbors(grid)
