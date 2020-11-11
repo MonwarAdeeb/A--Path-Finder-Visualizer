@@ -148,3 +148,19 @@ end.show((255, 8, 127), 0)
 start.show((255, 8, 127), 0)
 
 loop = True
+while loop:
+    ev = pygame.event.get()
+
+    for event in ev:
+        if event.type == pygame.QUIT:
+            pygame.quit()
+        if pygame.mouse.get_pressed()[0]:
+            try:
+                pos = pygame.mouse.get.pos()
+                mousePress(pos)
+            except AttributeError:
+                pass
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                loop = False
+                break
