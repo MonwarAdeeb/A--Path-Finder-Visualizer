@@ -170,7 +170,7 @@ for i in range(cols):
         grid[i][j].addNeighbors(grid)
 
 
-def heurisitic(n, e):
+def heuristic(n, e):
     d = math.sqrt((n.i - e.i)**2 + (n.j - e.j)**2)
     # d = abs(n.i - e.i) + abs(n.j - e.j)
     return d
