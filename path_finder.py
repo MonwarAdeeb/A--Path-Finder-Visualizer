@@ -195,3 +195,7 @@ def main():
                     current.show((0, 0, 255), 0)
                     current = current.previous
                 end.show((255, 8, 127), 0)
+
+                Tk().wm_withdraw()
+                result = messagebox.askokcancel('Program Finished', ('The program finished, the shortest distance \n to the path is ' +
+                                                                     str(temp) + 'blocks away, \n would you like to re run the program?'))
