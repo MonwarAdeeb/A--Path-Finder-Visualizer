@@ -186,3 +186,12 @@ def main():
                 lowestIndex = 1
 
             current = openSet[lowestIndex]
+            if current == end:
+                print('done', current.f)
+                start.show((255, 8, 127), 0)
+                temp = current.f
+                for i in range(round(current.f)):
+                    current.closed = False
+                    current.show((0, 0, 255), 0)
+                    current = current.previous
+                end.show((255, 8, 127), 0)
