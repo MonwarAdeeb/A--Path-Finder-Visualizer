@@ -197,5 +197,16 @@ def main():
                 end.show((255, 8, 127), 0)
 
                 Tk().wm_withdraw()
-                result = messagebox.askokcancel('Program Finished', ('The program finished, the shortest distance \n to the path is ' +
-                                                                     str(temp) + 'blocks away, \n would you like to re run the program?'))
+                result = messagebox.askokcancel('Program Finished', ('The program finished, the shortest distance \n to the path is ' + str(
+                    temp) + 'blocks away, \n would you like to re run the program?'))
+                if result == True:
+                    os.excel(sys.executable, sys.executable, *sys.argv)
+                else:
+                    ag = True
+                    while ag:
+                        ev = pygame.event.get()
+                        for event in ev:
+                            if event.type == pygame.KEYDOWN:
+                                ag = False
+                                break
+                pygame.quit()
