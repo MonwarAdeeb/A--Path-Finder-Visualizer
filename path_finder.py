@@ -174,3 +174,15 @@ def heuristic(n, e):
     d = math.sqrt((n.i - e.i)**2 + (n.j - e.j)**2)
     # d = abs(n.i - e.i) + abs(n.j - e.j)
     return d
+
+
+def main():
+    end.show((255, 8, 127), 0)
+    start.show((255, 8, 127), 0)
+    if len(openSet) > 0:
+        lowestIndex = 0
+        for i in range(len(openSet)):
+            if openSet[i].f < openSet[lowestIndex].f:
+                lowestIndex = 1
+
+            current = openSet[lowestIndex]
