@@ -7,7 +7,7 @@ try:
     from tkinter import messagebox
     import os
 except:
-    import install_requirements
+    import install_requirements  # install packages
     import pygame
     import sys
     import math
@@ -42,7 +42,7 @@ class spot:
         pygame.display.update()
 
     def addNeighbors(self, grid):
-        j = self.i
+        i = self.i
         j = self.j
         if i < cols-1 and grid[self.i + 1][j].obs == False:
             self.neighbors.append(grid[self.i + 1][j])
@@ -76,11 +76,11 @@ for i in range(cols):
     for j in range(row):
         grid[i][j] = spot(i, j)
 
+
 # Set start and end node
 start = grid[12][5]
 end = grid[3][6]
-
-# Show rectangle
+# SHOW RECT
 for i in range(cols):
     for j in range(row):
         grid[i][j].show((255, 255, 255), 1)
@@ -100,7 +100,7 @@ def onsubmit():
     global start
     global end
     st = startBox.get().split(',')
-    ed = endbox.get().split(',')
+    ed = endBox.get().split(',')
     start = grid[int(st[0])][int(st[1])]
     end = grid[int(ed[0])][int(ed[1])]
     window.quit()
@@ -111,7 +111,7 @@ window = Tk()
 label = Label(window, text='Start(x,y): ')
 startBox = Entry(window)
 label1 = Label(window, text='End(x,y): ')
-endbox = Entry(window)
+endBox = Entry(window)
 var = IntVar()
 showPath = ttk.Checkbutton(window, text='Show Steps :',
                            onvalue=1, offvalue=0, variable=var)
@@ -121,7 +121,7 @@ submit = Button(window, text='Submit', command=onsubmit)
 showPath.grid(columnspan=2, row=2)
 submit.grid(columnspan=2, row=3)
 label1.grid(row=1, pady=3)
-endbox.grid(row=1, column=1, pady=3)
+endBox.grid(row=1, column=1, pady=3)
 startBox.grid(row=0, column=1, pady=3)
 label.grid(row=0, pady=3)
 
@@ -156,7 +156,7 @@ while loop:
             pygame.quit()
         if pygame.mouse.get_pressed()[0]:
             try:
-                pos = pygame.mouse.get.pos()
+                pos = pygame.mouse.get_pos()
                 mousePress(pos)
             except AttributeError:
                 pass
@@ -166,13 +166,13 @@ while loop:
                 break
 
 for i in range(cols):
-    for J in range(row):
+    for j in range(row):
         grid[i][j].addNeighbors(grid)
 
 
 def heuristic(n, e):
     d = math.sqrt((n.i - e.i)**2 + (n.j - e.j)**2)
-    # d = abs(n.i - e.i) + abs(n.j - e.j)
+    #d = abs(n.i - e.i) + abs(n.j - e.j)
     return d
 
 
@@ -183,66 +183,67 @@ def main():
         lowestIndex = 0
         for i in range(len(openSet)):
             if openSet[i].f < openSet[lowestIndex].f:
-                lowestIndex = 1
+                lowestIndex = i
 
-            current = openSet[lowestIndex]
-            if current == end:
-                print('done', current.f)
-                start.show((255, 8, 127), 0)
-                temp = current.f
-                for i in range(round(current.f)):
-                    current.closed = False
-                    current.show((0, 0, 255), 0)
-                    current = current.previous
-                end.show((255, 8, 127), 0)
+        current = openSet[lowestIndex]
+        if current == end:
+            print('done', current.f)
+            start.show((255, 8, 127), 0)
+            temp = current.f
+            for i in range(round(current.f)):
+                current.closed = False
+                current.show((0, 0, 255), 0)
+                current = current.previous
+            end.show((255, 8, 127), 0)
 
-                Tk().wm_withdraw()
-                result = messagebox.askokcancel('Program Finished', ('The program finished, the shortest distance \n to the path is ' + str(
-                    temp) + 'blocks away, \n would you like to re run the program?'))
-                if result == True:
-                    os.excel(sys.executable, sys.executable, *sys.argv)
-                else:
-                    ag = True
-                    while ag:
-                        ev = pygame.event.get()
-                        for event in ev:
-                            if event.type == pygame.KEYDOWN:
-                                ag = False
-                                break
-                pygame.quit()
+            Tk().wm_withdraw()
+            result = messagebox.askokcancel('Program Finished', ('The program finished, the shortest distance \n to the path is ' + str(
+                temp) + ' blocks away, \n would you like to re run the program?'))
+            if result == True:
+                os.execl(sys.executable, sys.executable, *sys.argv)
+            else:
+                ag = True
+                while ag:
+                    ev = pygame.event.get()
+                    for event in ev:
+                        if event.type == pygame.KEYDOWN:
+                            ag = False
+                            break
+            pygame.quit()
 
-            openSet.pop(lowestIndex)
-            closedSet.append(current)
+        openSet.pop(lowestIndex)
+        closedSet.append(current)
 
-            neighbors = current.neighbors
-            for i in range(len(neighbors)):
-                neighbor = neighbors[i]
-                if neighbor not in closedSet:
-                    tempG = current.g + current.value
-                    if neighbor in openSet:
-                        if neighbor.g > tempG:
-                            neighbor.g = tempG
-                    else:
+        neighbors = current.neighbors
+        for i in range(len(neighbors)):
+            neighbor = neighbors[i]
+            if neighbor not in closedSet:
+                tempG = current.g + current.value
+                if neighbor in openSet:
+                    if neighbor.g > tempG:
                         neighbor.g = tempG
-                        openSet.append(neighbor)
+                else:
+                    neighbor.g = tempG
+                    openSet.append(neighbor)
 
-                neighbor.h = heuristic(neighbor, end)
-                neighbor.f = neighbor.g + neighbor.h
+            neighbor.h = heuristic(neighbor, end)
+            neighbor.f = neighbor.g + neighbor.h
 
-                if neighbor.previous == None:
-                    neighbor.previous = current
+            if neighbor.previous == None:
+                neighbor.previous = current
     if var.get():
         for i in range(len(openSet)):
             openSet[i].show(green, 0)
 
-        for in range(len(closedSet)):
+        for i in range(len(closedSet)):
             if closedSet[i] != start:
                 closedSet[i].show(red, 0)
     current.closed = True
 
-    while True:
-        ev = pygame.event.poll()
-        if ev.type == pygame.QUIT:
-            pygame.quit()
-        pygame.display.update()
-        main()
+
+while True:
+    ev = pygame.event.poll()
+    if ev.type == pygame.QUIT:
+        pygame.quit()
+    pygame.display.update()
+    main()
