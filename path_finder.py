@@ -210,3 +210,21 @@ def main():
                                 ag = False
                                 break
                 pygame.quit()
+
+            openSet.pop(lowestIndex)
+            closedSet.append(current)
+
+            neighbors = current.neighbors
+            for i in range(len(neighbors)):
+                neighbor = neighbors[i]
+                if neighbor not in closedSet:
+                    tempG = current.g + current.value
+                    if neighbor in openSet:
+                        if neighbor.g > tempG:
+                            neighbor.g = tempG
+                    else:
+                        neighbor.g = tempG
+                        openSet.append(neighbor)
+
+                neighbor.h = heuristic(neighbor, end)
+                neighbor.f = neighbor.g + neighbor.h
